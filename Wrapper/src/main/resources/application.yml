@@ -1,0 +1,9 @@
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+url:
+  protocol: ${URL_PROTOCOL:http}
+  server: ${URL_SERVER:localhost}
+  port: ${URL_PORT:8081}

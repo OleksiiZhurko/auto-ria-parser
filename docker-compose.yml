@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  parser:
+    image: parser
+    container_name: parser
+    build:
+      context: ./CarPredict
+      dockerfile: Dockerfile
+    ports:
+      - "8081"
+    volumes:
+      - ./resources:/resources
+  wrapper:
+    image: wrapper
+    container_name: wrapper
+    build:
+      context: ./Wrapper
+      dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+    environment:
+      - URL_PROTOCOL=${URL_PROTOCOL:-http}
+      - URL_SERVER=${URL_SERVER:-parser}
+      - URL_PORT=${URL_PORT:-8081}
